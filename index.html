@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Plan zajęć</title>
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Plan zajęć"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" href="apple-touch-icon.png">
+<style>
+:root{--bg:#f6f5f1;--cd:#fff;--tx:#1d1d1b;--mu:#76746d;--ln:#e4e2db;--ac:#707075;--na:#00bfff;--mi:#d6341f;--nat:#08222e;--mit:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16161a;--cd:#202026;--tx:#f0efea;--mu:#9a98a0;--ln:#33333b;--ac:#8e8e93;--na:#0a7ea8;--mi:#a32616;--nat:#fff}}
+:root[data-theme="dark"]{--bg:#16161a;--cd:#202026;--tx:#f0efea;--mu:#9a98a0;--ln:#33333b;--ac:#8e8e93;--na:#0a7ea8;--mi:#a32616;--nat:#fff}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.3 -apple-system,system-ui,"Segoe UI",Roboto,sans-serif}
+#app{max-width:560px;margin:0 auto;padding:14px 12px 40px}
+.seg{display:flex;background:var(--ln);border-radius:12px;padding:3px;margin-bottom:10px}
+.seg button{flex:1;border:0;background:none;color:var(--tx);padding:9px 4px;border-radius:9px;font:inherit;font-weight:600;display:flex;align-items:center;justify-content:center;gap:7px}
+.seg button.on{background:var(--cd);box-shadow:0 1px 3px #0003}
+.kids{display:flex;justify-content:center;gap:22px;margin:2px 0 12px}
+.kids button{border:0;background:none;padding:4px;border-radius:50%;box-shadow:0 0 0 3px transparent;transition:box-shadow .15s}
+.kids button.on{box-shadow:0 0 0 3px var(--ac)}
+.dot{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font:700 17px/1 -apple-system,system-ui,"Segoe UI",Roboto,sans-serif;text-shadow:0 1px 2px #0004}
+.kids .dot{color:#fff}.dot.Na{background:var(--na)}.dot.Mi{background:var(--mi)}
+.dot.Razem{background:linear-gradient(90deg,var(--na) 50%,var(--mi) 50%);font-size:14px}
+.days{display:flex;gap:5px;margin:4px 0 12px}
+.days button{flex:1;border:1px solid var(--ln);background:var(--cd);color:var(--tx);border-radius:12px;padding:8px 0;font:inherit;font-size:14px;font-weight:600;position:relative}
+.days button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.days button.td:after{content:"";position:absolute;left:50%;bottom:3px;width:5px;height:5px;margin-left:-2px;border-radius:9px;background:currentColor;opacity:.6}
+h2{font-size:17px;margin:0 4px 8px}
+.ev{display:grid;grid-template-columns:50px 1fr auto;gap:10px;align-items:center;padding:10px 12px;border-radius:14px;margin-bottom:8px;border:2px solid transparent}
+.Na{background:var(--na);color:var(--nat)}.Mi{background:var(--mi);color:var(--mit)}
+.tm{font-weight:700;font-size:15px}.tm span{font-weight:400;font-size:12px;opacity:.7}
+.bd b{display:block;font-size:16px}.bd small{opacity:.75;font-size:13px}
+i{font-style:normal;font-size:11px;font-weight:700;border-radius:8px;padding:2px 7px;background:var(--ac);color:#fff}
+.empty{text-align:center;color:var(--mu);padding:40px 0}
+h3{margin:14px 4px 6px;font-size:15px;display:inline-block;padding:2px 10px;border-radius:9px}
+.wk{display:grid;grid-template-columns:18px repeat(5,1fr);gap:3px;font-size:11px}
+.wh{text-align:center;font-weight:700;padding:6px 0;background:var(--cd);border-radius:8px;border:1px solid var(--ln)}.wh.td{background:var(--ac);color:#fff;border-color:var(--ac)}
+.sn{color:var(--mu);display:flex;align-items:center;justify-content:center}
+.c{min-height:42px;border-radius:7px;padding:3px;text-align:center;word-break:break-word;line-height:1.15;display:flex;flex-direction:column;justify-content:center;background:var(--cd);border:1px solid var(--ln)}
+.c{padding:3px 1px;font-size:10.5px;letter-spacing:-.1px}.c.xs span{font-size:9px;padding:2px 2px;letter-spacing:-.2px}.c.Na,.c.Mi{border-color:transparent}.c.Na{background:var(--na)}.c.Mi{background:var(--mi)}.c small{opacity:.7;font-size:10px}
+.c.xs{align-items:stretch;gap:2px;text-align:left;font-size:10px;padding:2px}.c.xs span{border-radius:5px;padding:2px 3px}
+.wk.wk2{gap:3px 4px}
+.c2{display:flex;gap:2px;min-height:46px}
+.c2>div{flex:1;min-width:0;border-radius:6px;padding:2px 1px;text-align:center;overflow-wrap:anywhere;line-height:1.1;font-size:9.5px;display:flex;flex-direction:column;justify-content:center;background:var(--cd);border:1px solid var(--ln)}
+.c2>div.Na,.c2>div.Mi{border-color:transparent}.c2>div.Na{background:var(--na)}.c2>div.Mi{background:var(--mi)}.c2 small{opacity:.7;font-size:9px}
+.c2:not(.xs)>div{overflow-wrap:normal;font-size:10px}
+.c2.xs>div{justify-content:flex-start;font-size:8.5px;gap:3px;hyphens:auto}.c2.xs span{display:block}
+.we{font-size:13px;color:var(--mu);margin:8px 4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.two .ev{grid-template-columns:1fr;gap:2px;padding:8px 9px;margin-bottom:6px}
+.two .tm br{display:none}.two .tm span{font-size:inherit;font-weight:700;opacity:1}.two .tm span:before{content:"–"}
+.two .tm{font-size:13px}.two .bd b{font-size:15px}
+</style></head><body>
+<div id="app"></div>
+<script>
+const D=["Poniedziałek","Wtorek","Środa","Czwartek","Piątek","Sobota","Niedziela"],S=["Pn","Wt","Śr","Cz","Pt","So","Nd"];
+const T=[["08:00","08:45"],["08:55","09:40"],["09:50","10:35"],["10:45","11:30"],["11:45","12:30"],["12:50","13:35"],["13:50","14:35"],["14:45","15:30"],["15:35","16:20"]];
+const E=[];
+const L=(k,d,a)=>a.forEach(([i,t,r])=>E.push({k,d,i,s:T[i-1][0],e:T[i-1][1],t,r}));
+const X=(k,d,s,e,t,r)=>E.push({k,d,s,e,t,r:r||"",x:1});
+L('Na',0,[[3,'j.pol.','20'],[4,'matma','22'],[5,'technika','25'],[6,'j.ang.','30'],[7,'w-f','H1']]);
+L('Mi',0,[[1,'Dz1','27'],[2,'chemia','18?'],[3,'j.pol.',''],[4,'w-f',''],[5,'historia','27'],[6,'matma','21'],[7,'fizyka','18']]);
+X('Na',0,'16:00','18:00','Edukreska');X('Mi',0,'16:30','18:00','Polak','100 zł*');
+L('Na',1,[[2,'j.ang.','30'],[3,'muzyka','25'],[4,'j.pol.','20'],[5,'w-f','H1']]);
+X('Na',1,'08:00','08:45','FIZJO','7h');X('Na',1,'13:45','15:15','ANG. Stankiewicz');X('Na',1,'17:15','18:30','Valldal');
+L('Mi',1,[[1,'j.ang. GR II','29'],[2,'WOS','27'],[3,'matma','21'],[4,'j.pol.',''],[5,'informatyka','9'],[6,'historia','27'],[7,'w-f','']]);
+X('Mi',1,'18:30','20:00','GAS SP21');
+L('Na',2,[[1,'j.pol.','20'],[2,'historia','27'],[3,'j.ang.','30'],[4,'informatyka','9'],[5,'matma','22']]);
+L('Mi',2,[[1,'fizyka',''],[2,'matma','21'],[3,'Zzw','29'],[4,'w-f','H1'],[5,'j.pol.','20'],[6,'j.hiszpański','19'],[7,'j.hiszpański','19']]);
+X('Mi',2,'14:45','16:20','Koło chemiczne','SP18');
+L('Na',3,[[1,'j.pol.','20'],[2,'ezdr.','23'],[3,'matma','22'],[4,'plastyka','25'],[5,'w-f','H1'],[6,'Zzw','20']]);
+X('Na',3,'14:30','16:00','ANG. Stankiewicz');
+L('Mi',3,[[2,'j.pol.','20'],[3,'biologia','23'],[4,'WOS','27'],[5,'Edb','25'],[6,'j.ang. GR II','29'],[7,'matma','21'],[8,'Ezdr','18']]);
+X('Mi',3,'18:30','20:00','GAS SP21');
+L('Na',4,[[2,'w-f','H2'],[3,'j.pol.','20'],[4,'biologia','23'],[5,'geografia','27'],[6,'historia','18'],[7,'matma','22']]);
+L('Mi',4,[[1,'w-f','SG'],[2,'matma','21'],[3,'geografia','19'],[4,'chemia','18'],[5,'j.pol.','20'],[6,'j.ang. GR II','29']]);
+X('Mi',4,'15:30','16:30','ANG. Magda Więcław','120 zł');
+X('Na',6,'17:30','18:15','Basen');X('Mi',6,'17:30','18:15','Basen');
+
+const now=new Date(),td=(now.getDay()+6)%7,nm=now.getHours()*60+now.getMinutes();
+let K='Razem',V='day',day=td;
+const app=document.getElementById('app');
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const mins=t=>+t.slice(0,2)*60+ +t.slice(3);
+const kids=()=>K==='Razem'?['Na','Mi']:[K];
+const seg=(a,cur,key)=>`<div class="seg">${a.map(x=>`<button class="${x===cur?'on':''}" data-a="${key}" data-v="${x}">${x}</button>`).join('')}</div>`;
+const kidSel=()=>`<div class="kids">${['Na','Mi','Razem'].map(x=>`<button class="${x===K?'on':''}" data-a="kid" data-v="${x}" aria-label="${x}"><span class="dot ${x}">${x}</span></button>`).join('')}</div>`;
+
+function card(e){const nw=e.d===td&&mins(e.s)<=nm&&nm<mins(e.e);
+return `<div class="ev ${e.k}" style="${nw?'border-color:var(--ac)':''}"><div class="tm">${e.s}<br><span>${e.e}</span></div><div class="bd"><b>${esc(e.t)}</b>${e.r?`<small>${e.x?'':'s. '}${esc(e.r)}</small>`:''}</div><div>${nw?'<i>teraz</i>':''}</div></div>`}
+
+function dayView(){
+ let h=`<div class="days">${S.map((s,d)=>`<button class="${d===day?'on':''} ${d===td?'td':''}" data-a="day" data-d="${d}">${s}</button>`).join('')}</div><h2>${D[day]}${day===td?' · dziś':''}</h2>`;
+ const l=E.filter(e=>e.d===day&&kids().includes(e.k)).sort((a,b)=>a.s.localeCompare(b.s)||a.k.localeCompare(b.k));
+ if(K==='Razem'){const col=k=>`<div><h3 class="${k}" style="display:block;text-align:center;margin:0 0 6px">${k}</h3>`+(l.filter(e=>e.k===k).map(card).join('')||'<div class="empty" style="padding:20px 0">—</div>')+'</div>';return h+`<div class="two">${col('Na')}${col('Mi')}</div>`}
+ return h+(l.length?l.map(card).join(''):'<div class="empty">Brak zajęć 🎉</div>');
+}
+const SH={'matma':'mat.','historia':'hist.','informatyka':'inf.','chemia':'chem.','biologia':'biol.','geografia':'geo.','technika':'tech.','muzyka':'muz.','plastyka':'plast.','fizyka':'fiz.','j.hiszpański':'hiszp.','j.ang. GR II':'ang. II','j.ang.':'ang.','j.pol.':'pol.'};
+const head=()=>`<div></div>`+[0,1,2,3,4].map(d=>`<div class="wh ${d===td?'td':''}" data-a="gd" data-d="${d}">${S[d]}</div>`).join('');
+const weekend=ks=>{const w=E.filter(x=>x.d>=5&&ks.includes(x.k)).sort((a,b)=>a.d-b.d||a.s.localeCompare(b.s));
+ return w.length?`<div class="we">Weekend: ${w.map(x=>`${S[x.d]} ${x.s} ${esc(x.t)} (${x.k})`).join(' · ')}</div>`:''};
+function weekView(){
+ if(K==='Razem'){
+  let h=`<div class="wk wk2" style="margin-top:4px">${head()}`;
+  const half=(k,e)=>`<div class="${e?k:''}">${e?esc(SH[e.t]||e.t)+(e.r?`<small>${esc(e.r)}</small>`:''):''}</div>`;
+  for(let i=1;i<=9;i++){h+=`<div class="sn">${i}</div>`;for(let d=0;d<5;d++){h+=`<div class="c2">${['Na','Mi'].map(k=>half(k,E.find(x=>x.k===k&&x.d===d&&x.i===i))).join('')}</div>`}}
+  h+=`<div class="sn">+</div>`;
+  for(let d=0;d<5;d++){h+=`<div class="c2 xs">${['Na','Mi'].map(k=>{const l=E.filter(x=>x.k===k&&x.d===d&&!x.i).sort((a,b)=>a.s.localeCompare(b.s));return `<div class="${l.length?k:''}">${l.map(x=>`<span>${x.s} ${esc(x.t)}</span>`).join('')}</div>`}).join('')}</div>`}
+  return h+'</div>'+weekend(['Na','Mi']);
+ }
+ const k=K,A=E.filter(e=>e.k===k);
+ let h=`<div class="wk" style="margin-top:4px">${head()}`;
+ for(let i=1;i<=9;i++){h+=`<div class="sn">${i}</div>`;for(let d=0;d<5;d++){const e=A.find(x=>x.d===d&&x.i===i);h+=`<div class="c ${e?k:''}">${e?esc(e.t)+(e.r?`<small>${esc(e.r)}</small>`:''):''}</div>`}}
+ h+=`<div class="sn">+</div>`;
+ for(let d=0;d<5;d++){const l=A.filter(x=>x.d===d&&!x.i).sort((a,b)=>a.s.localeCompare(b.s));h+=`<div class="c xs">${l.map(x=>`<span class="${k}">${x.s} ${esc(x.t)}</span>`).join('')}</div>`}
+ return h+'</div>'+weekend([k]);
+}
+
+function render(){
+ app.innerHTML=kidSel()+seg(['Dzień','Tydzień'],V==='day'?'Dzień':'Tydzień','view')+(V==='day'?dayView():weekView());
+}
+app.addEventListener('click',ev=>{
+ const b=ev.target.closest('[data-a]');if(!b)return;const a=b.dataset.a;
+ if(a==='kid')K=b.dataset.v;else if(a==='view')V=b.dataset.v==='Dzień'?'day':'week';
+ else if(a==='day')day=+b.dataset.d;else if(a==='gd'){day=+b.dataset.d;V='day'}
+ render();
+});
+let x0=null;
+app.addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});
+app.addEventListener('touchend',e=>{if(x0===null||V!=='day')return;const dx=e.changedTouches[0].clientX-x0;x0=null;
+ if(Math.abs(dx)>70){day=(day+(dx<0?1:6))%7;render()}},{passive:true});
+render();
+</script></body></html>
